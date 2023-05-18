@@ -10,6 +10,17 @@
   },
   "devDependencies": {
     "@types/node": "^18",
-    "nuxt": "^3.5.0"
+    "csstype": "^3.1.2",
+    "nuxt": "^3.5.0",
+    "sass": "^1.54.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@material/material-color-utilities": "^0.2.6",
+    "@vueuse/core": "^10.1.2",
+    "@vueuse/nuxt": "^10.1.2",
+    "defu": "^6.1.2",
+    "localforage": "^1.10.0",
+    "normalize.css": "^8.0.1"
   }
 }
