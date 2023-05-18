@@ -10,10 +10,20 @@ type SystemColorProperty = `--md-sys-color-${string}`;
 
 type UseThemeStyleOptions = ShallowRef<ThemeOptions>;
 
+/**
+ * Return type of the useThemeStyle composable.
+ */
 interface UseThemeStyleReturn {
   style: ShallowRef<CSSProperties | undefined>;
 }
 
+/**
+ * Composable for generating theme-based CSS styles.
+ *
+ * @param theme - The computed theme object.
+ * @param options - Options for customizing the theme styles.
+ * @returns An object containing the computed `style` property representing the generated CSS styles.
+ */
 export function useThemeStyle(
   theme: ComputedRef<Theme | undefined>,
   options?: UseThemeStyleOptions
@@ -26,6 +36,9 @@ export function useThemeStyle(
     isDarkModeEnabled: true,
   });
 
+  /**
+   * Computed property representing the generated CSS styles based on the provided theme.
+   */
   const style = computed<CSSProperties | undefined>(() => {
     if (!theme.value) {
       return;
@@ -64,6 +77,13 @@ export function useThemeStyle(
     return properties;
   });
 
+  /**
+   * Set the CSS properties for a given scheme.
+   *
+   * @param properties - The CSS properties object to update.
+   * @param scheme - The scheme object containing the color values.
+   * @param suffix - The suffix to append to the property key.
+   */
   function setSchemeProperties(
     properties: CSSProperties,
     scheme: Scheme,
