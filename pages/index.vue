@@ -8,6 +8,7 @@
 const { spaceName: spaceNameQuery } = useRouteThemeOptions();
 
 const spaceName = ref<string>(spaceNameQuery.value);
+const pageTitle = computed<string>(() => spaceName.value || 'Blank Space')
 
 watch(spaceName, (value) => {
   spaceNameQuery.value = value;
@@ -16,7 +17,7 @@ watch(spaceName, (value) => {
 });
 
 useHead({
-  title: spaceName
+  title: pageTitle
 })
 </script>
 

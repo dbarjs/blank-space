@@ -26,8 +26,6 @@ export function useThemeStyle(
     isDarkModeEnabled: true,
   });
 
-  console.log("useThemeStyle", isDarkModeEnabled)
-
   const style = computed<CSSProperties | undefined>(() => {
     if (!theme.value) {
       return;

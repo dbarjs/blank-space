@@ -1,5 +1,5 @@
 import localforage from 'localforage';
-import { Ref, onMounted, onUnmounted } from 'vue';
+import { onUnmounted } from 'vue';
 
 export interface StorageOptions {
   name?: string;

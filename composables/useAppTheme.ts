@@ -1,6 +1,6 @@
-import { shallowRef, ComputedRef, computed } from 'vue';
 import { Theme, argbFromHex, themeFromSourceColor } from '@material/material-color-utilities';
 import defu from 'defu';
+import { ComputedRef, computed } from 'vue';
 
 export interface ThemeOptions {
   hexSourceColor?: string;
@@ -31,7 +31,6 @@ export function useAppTheme(options: UseAppThemeOptions): UseAppThemeReturn {
   const { hexSourceColor, isDarkModeEnabled } = useRouteThemeOptions()
 
   if (!hexSourceColor.value) {
-    console.log("hexSourceColor", mergedOptions.hexSourceColor)
     hexSourceColor.value = mergedOptions.hexSourceColor;
   }
 

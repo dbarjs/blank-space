@@ -16,7 +16,6 @@ export function useRouteThemeOptions(): UseRouteThemeOptionsReturn {
   const route = useRoute();
 
   const currentQuery = ref<Record<string, string>>({});
-  const currentParams = ref<Record<string, string>>({});
 
   const hexSourceColor = computed<string | undefined>({
     get: () => route.query.color as string | undefined,
