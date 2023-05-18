@@ -1,25 +1,25 @@
 <template>
-  <div>
-    <input v-model="spaceName" type="text">
-  </div>
+  <NuxtLayout>
+    <NuxtPage/>
+  </NuxtLayout>
 </template>
 
-<script lang="ts" setup>
-const {query} = useRoute();
-const router = useRouter();
+<style lang="scss">
+:root {
+  --system-ui: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
 
+body {
+  font-family: var(--system-ui);
+  margin: 0;
+  height: 100vh;
+  width: 100%;
+}
 
-const spaceName = computed<string>({
-  get() {
-    return query['spaceName']
-  },
-  set(value: string) {
-    router.replace({
-      query: {
-        spaceName: value
-      }
-    })
-  }
-})
-
-</script>
+#__nuxt {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+}
+</style>
