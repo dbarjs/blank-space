@@ -1,10 +1,16 @@
 import { UseAppThemeOptions } from 'composables/useAppTheme';
 
-const appTheme: UseAppThemeOptions = {
-  hexSourceColor: '#ffffffff',
-  isDarkModeEnabled: true,
-}
+/**
+ * Configuration options for the app.
+ */
+const appConfig = {
+  /**
+   * The default app theme options.
+   */
+  appTheme: {
+    hexSourceColor: '#ffffffff',
+    isDarkModeEnabled: true,
+  } as UseAppThemeOptions,
+};
 
-export default defineAppConfig({
-  appTheme
-})
+export default defineAppConfig(appConfig);
