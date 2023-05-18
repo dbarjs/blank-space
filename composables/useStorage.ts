@@ -1,6 +1,8 @@
 import localforage from 'localforage';
-import { onUnmounted } from 'vue';
 
+/**
+ * Options for the useStorage composable.
+ */
 export interface StorageOptions {
   name?: string;
   driver?: string | string[];
@@ -11,21 +13,40 @@ export interface StorageOptions {
   // Add any other localforage options you need
 }
 
+/**
+ * Options for the useStorage composable.
+ */
 export interface UseStorageOptions<T> {
   storageOptions?: StorageOptions;
   defaultValue: T;
 }
 
+/**
+ * Return type of the useStorage composable.
+ */
 export interface UseStorageReturn<T> {
   retrieve: (key: string) => Promise<T>;
   store: (key: string, value: T) => Promise<void>;
 }
 
+/**
+ * Composable for handling storage operations using localforage.
+ *
+ * @param storeName - The name of the store to use for storing data.
+ * @param options - Options for the useStorage composable.
+ * @returns An object containing the `retrieve` and `store` functions for interacting with the storage.
+ */
 export function useStorage<T>(storeName: string, options: UseStorageOptions<T>): UseStorageReturn<T> {
   const { storageOptions = {}, defaultValue } = options;
 
   const storage = localforage.createInstance(storageOptions);
 
+  /**
+   * Retrieve a value from storage based on the provided key.
+   *
+   * @param key - The key associated with the value to retrieve.
+   * @returns A Promise that resolves to the retrieved value, or the default value if the key is not found.
+   */
   const retrieve = async (key: string): Promise<T> => {
     try {
       const value = await storage.getItem<T>(key);
@@ -36,6 +57,12 @@ export function useStorage<T>(storeName: string, options: UseStorageOptions<T>):
     }
   };
 
+  /**
+   * Store a value in storage with the provided key.
+   *
+   * @param key - The key associated with the value to store.
+   * @param value - The value to store.
+   */
   const store = async (key: string, value: T): Promise<void> => {
     try {
       await storage.setItem(key, value);
@@ -43,11 +70,6 @@ export function useStorage<T>(storeName: string, options: UseStorageOptions<T>):
       console.error('Error storing value in storage:', error);
     }
   };
-
-  // Clean up localforage instance when component is unmounted
-  onUnmounted(() => {
-    storage.clear(); // Optional: Clear storage when component is unmounted
-  });
 
   return {
     retrieve,
